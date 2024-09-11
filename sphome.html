@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>S&P Builders: Custom Home Builders in DFW</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        header {
+            background-color: #ffffff;
+            padding: 10px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s ease;
+        }
+        header.scrolled {
+            background-color: #222222;
+        }
+        nav {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 60px;
+        }
+        .logo {
+            height: 40px;
+            width: auto;
+            transition: opacity 0.3s ease;
+        }
+        .logo-black {
+            display: block;
+        }
+        .logo-gold {
+            display: none;
+        }
+        header.scrolled .logo-black {
+            display: none;
+        }
+        header.scrolled .logo-gold {
+            display: block;
+        }
+        nav a {
+            color: #000000;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-size: 16px;
+            display: inline-block;
+            height: 100%;
+            font-weight: bold;
+            padding: 10px 0;
+        }
+        header.scrolled nav a {
+            color: #ffffff;
+        }
+        nav a span {
+            transition: color 0.3s ease;
+        }
+        nav a:hover span {
+            color: #B59959;
+        }
+        nav a.active {
+            text-decoration: underline;
+            text-decoration-color: #B59959;
+            text-decoration-thickness: 3px;
+        }
+        .hero {
+            height: calc(100vh - 50px);
+            position: relative;
+            overflow: hidden;
+            margin-top: 50px;
+        }
+        .hero-images {
+            display: flex;
+            transition: transform 0.5s ease;
+            height: 100%;
+        }
+        .hero-images img {
+            width: 100vw;
+            height: 100%;
+            object-fit: cover;
+        }
+        .cta-button {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            border-radius: 5px;
+            transition: color 0.3s ease;
+        }
+        .cta-button:hover {
+            color: #B59959;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#" class="logo-link">
+                <img src="/Users/malachihernandez/Desktop/S&P Images/BLACKLOGO.png" alt="S&P Builders Logo" class="logo logo-black">
+                <img src="/Users/malachihernandez/Desktop/S&P Images/GOLDLOGO.png" alt="S&P Builders Logo" class="logo logo-gold">
+            </a>
+            <a href="#home" class="nav-link" data-section="home"><span>Home</span></a>
+            <a href="#build" class="nav-link" data-section="build"><span>Build With Us</span></a>
+            <a href="#properties" class="nav-link" data-section="properties"><span>Available Properties</span></a>
+            <a href="#other-services" class="nav-link" data-section="other-services"><span>Other Services</span></a>
+            <a href="#contact" class="nav-link" data-section="contact"><span>Contact</span></a>
+        </nav>
+    </header>
+    <script>
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Function to update active navigation link
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            let currentSection = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 60) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('data-section') === currentSection) {
+                    link.classList.add('active');
+                }
+            });
+        }
+
+        // Call the function on scroll and on page load
+        window.addEventListener('scroll', updateActiveNavLink);
+        window.addEventListener('load', updateActiveNavLink);
+    </script>
+    <div class="hero">
+        <div class="hero-images">
+            <img src="/Users/malachihernandez/Desktop/S&P Images/HERO1.jpg" alt="Luxury Home 1">
+            <img src="/Users/malachihernandez/Desktop/S&P Images/HERO2.jpg" alt="Luxury Home 2">
+            <img src="/Users/malachihernandez/Desktop/S&P Images/HERO3.jpg" alt="Luxury Home 3">
+            <img src="/Users/malachihernandez/Desktop/S&P Images/HERO4.jpg" alt="Luxury Home 4">
+        </div>
+        <a href="#properties" class="cta-button">View Available Properties</a>
+    </div>
+<section id="build" class="build-with-us">
+    <style>
+        .build-with-us {
+            padding: 50px 0;
+            background-color: #000000;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+            color: #ffffff;
+        }
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .card {
+            background-color: #1c1c1e;
+            border-radius: 18px;
+            padding: 30px;
+            width: calc(50% - 15px);
+            aspect-ratio: 1 / 1;
+            text-align: center;
+            transition: outline 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            outline: 2px solid transparent;
+            cursor: pointer;
+        }
+        .card:hover {
+            outline: 2px solid #B59959;
+        }
+        .card h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #B59959;
+        }
+        .card p {
+            font-size: 16px;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .card .learn-more {
+            color: #B59959;
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .card .learn-more::after {
+            content: " →";
+        }
+        @media (max-width: 768px) {
+            .card-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .card {
+                width: 80%;
+            }
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background-color: #1c1c1e;
+            padding: 30px;
+            border: 1px solid #B59959;
+            width: 90%;
+            max-width: 800px;
+            color: #ffffff;
+            border-radius: 18px;
+            position: relative;
+        }
+        .modal-content h2 {
+            color: #B59959;
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+        .close {
+            color: #B59959;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: #ffffff;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        body.modal-open {
+            overflow: hidden;
+        }
+    </style>
+    <h1 class="section-header">Build With Us:</h1>
+    <div class="card-container">
+        <div class="card" onclick="openModal('preDesigned')">
+            <h2>Pre-Designed Floor Plan</h2>
+            <p>Choose from a selection of designs to customize and build.</p>
+            <span class="learn-more">Learn More</span>
+        </div>
+        <div class="card" onclick="openModal('custom')">
+            <h2>Custom Build</h2>
+            <p>Your design, from the foundation up.</p>
+            <span class="learn-more">Learn More</span>
+        </div>
+    </div>
+    <div id="preDesignedModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('preDesigned')">&times;</span>
+            <h2>Pre-Designed Floor Plan</h2>
+            <p>Our pre-designed floor plans offer a range of stylish and functional layouts that can be customized to suit your needs. Choose from various architectural styles and make modifications to create your perfect home.</p>
+        </div>
+    </div>
+    <div id="customModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('custom')">&times;</span>
+            <h2>Custom Build</h2>
+            <p>With our custom build option, you have complete creative control. Work with our expert team to bring your unique vision to life, from initial concept to final construction.</p>
+        </div>
+    </div>
+    <script>
+        function openModal(type) {
+            document.getElementById(type + 'Modal').style.display = "flex";
+            document.body.classList.add('modal-open');
+        }
+
+        function closeModal(type) {
+            document.getElementById(type + 'Modal').style.display = "none";
+            document.body.classList.remove('modal-open');
+        }
+
+        window.onclick = function(event) {
+            if (event.target.classList.contains("modal")) {
+                event.target.style.display = "none";
+                document.body.classList.remove('modal-open');
+            }
+        }
+
+        // Close all modals when the page loads
+        window.addEventListener('load', function() {
+            var modals = document.getElementsByClassName('modal');
+            for (var i = 0; i < modals.length; i++) {
+                modals[i].style.display = "none";
+            }
+            document.body.classList.remove('modal-open');
+        });
+    </script>
+</section>
+
+<section id="properties" class="available-properties">
+    <style>
+        .available-properties {
+            padding: 50px 0;
+            background-color: #f5f5f7;
+        }
+        .available-properties .section-header {
+            text-align: left;
+            margin-bottom: 30px;
+            font-size: 32px;
+            color: #000000;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+        .coming-soon {
+            text-align: center;
+            color: #444444;
+            font-size: 18px;
+            margin-top: 50px;
+        }
+    </style>
+    <h1 class="section-header">Available Properties:</h1>
+    <p class="coming-soon">New properties coming soon... please check back later!</p>
+</section>
+
+<section id="other-services" class="other-services">
+    <style>
+        .other-services {
+            padding: 50px 0;
+            background-color: #ffffff;
+        }
+        .other-services .section-header {
+            text-align: left;
+            margin-bottom: 30px;
+            font-size: 32px;
+            color: #000000;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+        .accordion-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: #f5f5f7;
+            border-radius: 18px;
+            overflow: hidden;
+            display: flex;
+            min-height: 500px; /* Increased height to accommodate content */
+        }
+        .accordion-left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .accordion-right {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .accordion-image {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .accordion-item {
+            border-bottom: 1px solid #d2d2d7;
+        }
+        .accordion-item:last-child {
+            border-bottom: none;
+        }
+        .accordion-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .accordion-header:hover {
+            background-color: #e8e8ed;
+        }
+        .accordion-title {
+            font-size: 24px;
+            font-weight: 600;
+        }
+        .accordion-icon {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+        .accordion-text {
+            padding: 0 20px 20px;
+        }
+    </style>
+    <h1 class="section-header">Other Services:</h1>
+    <div class="accordion-container">
+        <div class="accordion-left">
+            <div class="accordion-item">
+                <div class="accordion-header" data-service="interior-design">
+                    <span class="accordion-title">Interior Design</span>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Work with our designers to bring your vision to life, creating spaces that are both beautiful and functional.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" data-service="home-repair">
+                    <span class="accordion-title">Home Repair</span>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>From minor fixes to major renovations, our contractor teams ensures your home stays in top condition.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="accordion-item">
+                <div class="accordion-header" data-service="realtor">
+                    <span class="accordion-title">Realtor®</span>
+                    <span class="accordion-icon">+</span>
+                </div>
+                <div class="accordion-content">
+                    <div class="accordion-text">
+                        <p>Work with our Realtor® partners receive expert guidance throughout your home buying or selling journey.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="accordion-right">
+            <img id="service-image" src="interior-design.jpg" alt="Service" class="accordion-image">
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact">
+    <style>
+        .contact {
+            padding: 80px 0;
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .contact .section-header {
+            text-align: left;
+            margin-bottom: 20px;
+            font-size: 32px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+        .contact-subheader {
+            color: #B59959;
+            font-size: 18px;
+            margin-bottom: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 20px;
+        }
+        .contact-content {
+            max-width: 600px;
+            margin: -20px 20px 0 auto; /* Shifted up and added right margin */
+            padding: 0 20px;
+        }
+        .contact-form {
+            width: 100%;
+        }
+        .form-group {
+            margin-bottom: 30px;
+            position: relative;
+        }
+        .form-group label {
+            position: absolute;
+            left: 0;
+            top: 10px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            pointer-events: none;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px 0;
+            border: none;
+            border-bottom: 1px solid #ffffff;
+            background-color: transparent;
+            color: #ffffff;
+            font-size: 16px;
+            outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+        .form-group select {
+            cursor: pointer;
+            color: #ffffff; /* Changed to white */
+        }
+        .form-group select option {
+            color: #000000; /* Keep options black for visibility */
+        }
+        .form-group select::-ms-expand {
+            display: none;
+        }
+        .form-group::after {
+            content: '\25BC';
+            position: absolute;
+            top: 10px;
+            right: 0;
+            color: #B59959;
+            pointer-events: none;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus,
+        .form-group input:not(:placeholder-shown),
+        .form-group select:not(:placeholder-shown),
+        .form-group textarea:not(:placeholder-shown) {
+            border-bottom-color: #B59959;
+        }
+        .form-group input:focus + label,
+        .form-group select:focus + label,
+        .form-group textarea:focus + label,
+        .form-group input:not(:placeholder-shown) + label,
+        .form-group select:not(:placeholder-shown) + label,
+        .form-group textarea:not(:placeholder-shown) + label {
+            top: -20px;
+            font-size: 12px;
+            color: #B59959;
+        }
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        .submit-button {
+            background-color: #B59959;
+            color: #000000;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-button:hover {
+            background-color: #9e8149;
+        }
+    </style>
+    <h1 class="section-header">How can we help?</h1>
+    <p class="contact-subheader">Leave us a message and we'll get back to you soon.</p>
+    <div class="contact-content">
+        <div class="contact-form">
+            <form>
+                <div class="form-group">
+                    <input type="text" id="name" name="name" placeholder=" " required>
+                    <label for="name">Name</label>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="email" name="email" placeholder=" " required>
+                    <label for="email">Email</label>
+                </div>
+                <div class="form-group">
+                    <input type="tel" id="phone" name="phone" placeholder=" " required>
+                    <label for="phone">Phone</label>
+                </div>
+                <div class="form-group">
+                    <select id="role" name="role" required>
+                        <option value="" disabled selected>I am a...</option>
+                        <option value="individual">Individual/Family</option>
+                        <option value="builder">Builder/Contractor</option>
+                        <option value="realtor">Realtor</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <select id="interest" name="interest" required>
+                        <option value="" disabled selected>I want to...</option>
+                        <option value="custom">Custom Build</option>
+                        <option value="predesigned">Pre-Designed Build</option>
+                        <option value="buy">Buy</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <textarea id="message" name="message" placeholder=" " required></textarea>
+                    <label for="message">Message</label>
+                </div>
+                <button type="submit" class="submit-button">Submit</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <style>
+        footer {
+            background-color: #000000;
+            color: #ffffff;
+            padding: 30px 0;
+            border-top: 2px solid #B59959;
+        }
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .footer-left {
+            display: flex;
+            align-items: center;
+        }
+        .footer-logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 20px;
+        }
+        .footer-instagram {
+            color: #B59959;
+            font-weight: bold;
+            text-decoration: none;
+        }
+        .footer-menu {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+        .footer-menu li {
+            margin-left: 20px;
+        }
+        .footer-menu a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: rgb(56, 56, 56);
+        }
+    </style>
+    <div class="footer-content">
+        <div class="footer-left">
+            <a href="#" title="Home">
+                <img src="/Users/malachihernandez/Desktop/S&P Images/GOLDLOGO.png" alt="S&P Builders Logo" class="footer-logo">
+            </a>
+            <a href="https://www.instagram.com/sandpbuilders/" class="footer-instagram">Follow us on Instagram!</a>
+        </div>
+        <ul class="footer-menu">
+            <li><a href="#build">Build With Us</a></li>
+            <li><a href="#properties">Available Properties</a></li>
+            <li><a href="#other-services">Other Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+    <div class="copyright">
+        © 2024, S&P Builders, LLC.
+    </div>
+</footer>
+
+    <script>
+        const heroImages = document.querySelector('.hero-images');
+        let currentPosition = 0;
+
+        function scrollHero() {
+            currentPosition -= 100;
+            if (currentPosition <= -400) {
+                currentPosition = 0;
+            }
+            heroImages.style.transform = `translateX(${currentPosition}vw)`;
+        }
+
+        setInterval(scrollHero, 5000);
+
+        // Accordion functionality
+        const accordionHeaders = document.querySelectorAll('.accordion-header');
+        let openAccordion = null;
+
+        accordionHeaders.forEach(header => {
+            header.addEventListener('click', () => {
+                const content = header.nextElementSibling;
+                const icon = header.querySelector('.accordion-icon');
+                
+                if (openAccordion && openAccordion !== content) {
+                    openAccordion.style.maxHeight = null;
+                    openAccordion.previousElementSibling.querySelector('.accordion-icon').style.transform = 'rotate(0deg)';
+                }
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.style.transform = 'rotate(0deg)';
+                    openAccordion = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    icon.style.transform = 'rotate(45deg)';
+                    openAccordion = content;
+                }
+            });
+        });
+    </script>
+</body>
+</html>
